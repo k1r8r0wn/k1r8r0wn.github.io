@@ -11,9 +11,8 @@
 
     Github:              https://github.com/k1r8r0wn
     Stackoverflow:       https://stackoverflow.com/story/k1r8r0wn
-    Twitter:             https://twitter.com/k1r8r0wn
 
-    From:                Omsk, Russia
+    From:                SPb, Russia
 
 // SITE
 
