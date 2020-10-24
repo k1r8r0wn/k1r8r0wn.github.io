@@ -4,11 +4,6 @@
 
 .container.post,
 .container.project {
-  padding-bottom: 2em;
-
-  article {
-    padding: 1em 0;
-  }
 
   img {
     display: block;
@@ -20,10 +15,6 @@
       width: 50%;
     }
   }
-}
-
-.container.post article {
-  margin-bottom: 3em;
 }
 
 .tags {

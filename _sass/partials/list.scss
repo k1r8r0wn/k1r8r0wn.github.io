@@ -41,10 +41,10 @@
     text-decoration: none;
     @include transition(all .5s ease-in);
 
-    @include color-selection('ruby')
-    @include color-selection('python')
-    @include color-selection('css')
-    @include color-selection('javascript')
+    @include color-selection('ruby');
+    @include color-selection('python');
+    @include color-selection('css');
+    @include color-selection('javascript');
 
     .ribbon-wrapper {
       @include size(85px);

@@ -1,17 +1,14 @@
+---
+---
+
 # Data
 xAxisData = [
-  { categories: ['Ruby', 'Elixir', 'Sinatra', 'Hanami', 'Ruby on Rails', 'Phoenix'] }
-  { categories: [
-      'HTML(ERB, Haml, Slim)', 'CSS(Sass)', 'Bootstrap/Foundation',
-      'JavaScript(CoffeeScript), jQuery'
-    ]
-  }
+  { categories: ['Ruby (2 & newer)', 'Elixir', 'Sinatra', 'Hanami', 'Ruby on Rails (3 & newer)' , 'Phoenix'] }
+  { categories: ['HTML', 'CSS', 'Bootstrap/Foundation', 'JavaScript(ES5)', 'Vue.js'] }
   { categories: ['RSpec', 'Capybara', 'Cucumber'] }
   { categories: ['MySQL', 'PostgreSQL'] }
-  { categories: ['Adobe Illustrator', 'Sketch'] }
-  { categories: ['Python', 'R-language', 'SPSS', 'MS Excel'] }
   { categories: ['macOS', 'Linux', 'Windows'] }
-  { categories: ['Bash', 'Git', 'Docker', 'CI'] }
+  { categories: ['Bash', 'Git', 'Docker', 'CI/CD'] }
   { categories: ['Russian', 'English', 'French'] }
 ]
 
@@ -24,7 +21,7 @@ seriesData = [
   {
     name: 'Front end'
     color: 'rgb(181,137,0)'
-    data: [8, 7, 7, 4]
+    data: [8, 7, 7, 4, 2]
     visible: false
     xAxis: 1
   }
@@ -43,39 +40,25 @@ seriesData = [
     xAxis: 3
   }
   {
-    name: 'Design'
-    color: 'rgb(42,161,152)'
-    data: [4, 2]
-    visible: false
-    xAxis: 4
-  }
-  {
-    name: 'Analytics'
-    color: 'rgb(211,54,130)'
-    data: [2, 3, 2, 5]
-    visible: false
-    xAxis: 5
-  }
-  {
     name: 'OS'
     color: 'rgb(38,139,210)'
     data: [9, 6, 4]
     visible: false
-    xAxis: 6
+    xAxis: 4
   }
   {
     name: 'Dev tools'
     color: 'rgb(147,161,161)'
     data: [7, 8, 5, 4]
     visible: false
-    xAxis: 7
+    xAxis: 5
   }
   {
     name: 'Languages'
     color: 'rgb(133,153,0)'
-    data: [9, 6, 2]
+    data: [9, 6, 1]
     visible: false
-    xAxis: 8
+    xAxis: 6
   }
 ]
 

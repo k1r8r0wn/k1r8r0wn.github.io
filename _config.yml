@@ -1,12 +1,12 @@
 # Site settings
-title: Web developer, Freelancer | Kirill Bobrov
+title: Software engineer | Kirill Bobrov
 author: k1r8r0wn
 description:
-  Hi, I'm Web developer &amp; Freelancer. Welcome to my personal blog.
+  Hi, I'm software engineer. Welcome to my personal blog.
 keywords:
-  internet web website page design development freelancer developer front-end back-end ruby ruby-on-rails 
-  jekyll sql sqlite mysql postgresql html5 mailchimp css3 bootstrap sass compass javascript jquery 
-  coffeescript git russia siberia omsk
+  internet web website page design development freelancer developer web-developer sortware-engineer front-end
+  back-end ruby ruby-on-rails rspec jekyll postgresql html5 css3 bootstrap mailchimp javascript vuejs
+  git russia saint-petersburg siberia omsk
 
 heading-img: assets/img/sky.jpg
 
@@ -32,3 +32,10 @@ exclude:
 
 # GitHub's repository
 # repository: k1r8r0wn/k1r8r0wn.github.io
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+plugins:
+  - jekyll-coffeescript
