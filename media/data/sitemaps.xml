@@ -10,7 +10,7 @@ permalink: /sitemaps.xml
     <loc>{{ post.url | prepend: site.url }}</loc>
     {% assign versions=site.posts | where:"name", post.name %}
     {% for version in versions %}
-      {% if version.lang != page.lang %}
+      {% if version.lang != post.lang %}
         <link rel="alternate" hreflang="{{ version.lang }}" href="{{ version.url | prepend: site.url }}" />
       {% endif %}
     {% endfor %}
