@@ -1,0 +1,50 @@
+{% if include.mode != 'month' %}
+  {% assign date = include.date | date: "%-d" %}
+  {% if page.lang == 'ru' %}
+    {{ date }}
+  {% else %}
+    {{ date }}<sup>{% case date %}
+      {% when '1' or '21' or '31' %}st
+      {% when '2' or '22' %}nd
+      {% when '3' or '23' %}rd
+      {% else %}th
+    {% endcase %}</sup> of
+  {% endif %}
+{% endif %}
+
+{% if page.lang == 'ru' and page.type == 'pages' %}
+ {% assign m = include.date | date: "%-m" %}
+ {% case m %}
+    {% when '1' %}Январь
+    {% when '2' %}Февраль
+    {% when '3' %}Март
+    {% when '4' %}Апрель
+    {% when '5' %}Май
+    {% when '6' %}Июнь
+    {% when '7' %}Июль
+    {% when '8' %}Aвгуст
+    {% when '9' %}Cентябрь
+    {% when '10' %}Октябрь
+    {% when '11' %}Ноябрь
+    {% when '12' %}Декабрь
+  {% endcase %}
+{% elsif page.lang == 'ru' %}
+  {% assign m = include.date | date: "%-m" %}
+  {% case m %}
+    {% when '1' %}января
+    {% when '2' %}февраля
+    {% when '3' %}марта
+    {% when '4' %}апреля
+    {% when '5' %}мая
+    {% when '6' %}июня
+    {% when '7' %}июля
+    {% when '8' %}августа
+    {% when '9' %}сентября
+    {% when '10' %}октября
+    {% when '11' %}ноября
+    {% when '12' %}декабря
+  {% endcase %}
+{% else %}
+  {{ include.date | date: "%B"}}
+{% endif %}
+{{ include.date | date: "%Y"}}

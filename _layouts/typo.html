@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+  {% capture compress %}
+    {% assign temp1 = content | split: '<pre>' %}
+    {% for temp2 in temp1 %}
+      {% assign temp3 = temp2 | split: '</pre>' %}
+
+      {% if temp3.size == 2 %}
+        <pre>{{ temp3.first | newline_to_br | replace: "<br />", "</code><br /><code>" | strip_newlines | replace: "<code></code>", ""}}</pre>
+      {% endif %}
+
+      {% assign t = temp3.last %}
+      {% assign t = t | replace: '&#39;', '’' | replace: '~', '&nbsp;' %}
+      {% assign t = t | replace: ' ((', '<span class="as"></span><span class="br"> (</span><span class="mar">' %}
+      {% assign t = t | replace: '))', '</span><span class="br">)</span>' %}
+      {{ t | split: ' ' | join: ' ' }}
+
+    {% endfor %}
+  {% endcapture %}
+  {{ compress | strip_newlines }}
+
+  <!-- Google analytics tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBX8TZQ98M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RBX8TZQ98M');
+  </script>
+</html>

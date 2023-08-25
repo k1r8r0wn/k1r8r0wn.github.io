@@ -1,0 +1,87 @@
+---
+layout: typo
+---
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=0.9">
+  <meta name="author" content="{{ site.t[page.lang].author }}">
+  <meta name="description"
+        content="{% if page.type == 'pages' %}
+                  {{ site.t[page.lang].description }}
+                 {% else %}
+                  {{ page.excerpt | strip_html | replace: '((', '('  | replace: '))', ')' }}
+                 {% endif %}"
+  >
+  <title>{{ page.title | strip_html }} · {{ site.t[page.lang].author }}</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{{ '/media/design/favicon.png' | prepend: site.baseurl }}">
+  <link rel="apple-touch-icon" type="image/png" href="{{ '/media/design/favicon.png' | prepend: site.baseurl }}" sizes="144x144">
+  <link rel="mask-icon" type="image/svg" href="{{ '/media/design/favicon.svg' | prepend: site.baseurl }}" color="#795548">
+  <link rel="alternate" href="/rss.xml" type="application/rss+xml" />
+  <style>
+      {% capture styles %}{% include style.sass %}{% endcapture %}{{ styles | sassify }}
+      h1 { background-image:url('data:image/jpg;base64,{% include headers/{{ page.date | date:'%Y-%m-%d' }} %}');}
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <nav>
+      <ul>
+        <li class="logo">
+          <a href="{{ site.baseurl }}/">
+            <img src="{{ '/media/design/logo.svg' | prepend: site.baseurl }}" alt="{{ site.t[page.lang].author }}">
+          </a>
+        </li>
+        {% for menu in site.nav[page.lang] %}
+          <li>
+            <a href="{{ menu[1].url }}">{{ menu[1].title }}</a>
+          </li>
+        {% endfor %}
+        {% if page.name %}
+          <li class="lang">
+            {% assign posts=site.posts | where:"name", page.name | sort: 'path' %}
+            {% for post in posts %}
+              <a href="{{ post.url }}" class="{{ post.lang }}">{{ site.t[post.lang].lang }}</a>
+            {% endfor %}
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <h1>{{ page.title }}</h1>
+
+    <main class="clearfix">
+      {% if page.type != 'pages' %}
+        <p class="date">
+          {% include date.html date=page.date %}
+          <br/>
+          {% assign words = content | number_of_words %}
+          {% if words <= 50 %}
+          &#60; 1
+          {% elsif words >= 50 and words < 250 %}
+          &#126; 1
+          {% else %}
+          &#126; {{ words | divided_by:125 }}
+          {% endif %}
+          {{ site.t[page.lang].min }}
+        </p>
+      {% endif %}
+      {{ content }}
+      <hr/>
+    </main>
+  </div>
+  <footer>
+    <div id="links">
+      <a href="{{ site.url }}"> &copy; {{ site.t[page.lang].author }} {{ site.time | date: '%Y' }} {{ site.t[page.lang].all_rights_reserved }} </a>
+      <br/>
+      <a href="https://www.linkedin.com/in/k1r8r0wn/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/k1r8r0wn/" target="_blank">GitHub</a>
+      <a title="{{ site.t[page.lang].correct_email }}" href="mailto:k1r8r0wnPLUSSconsultingATTgmailDDOTcom"
+         onclick="event.preventDefault();window.location.href=this.href
+              .replace(/ATT/,'@')
+              .replace(/DDOT/,'.')
+              .replace(/PLUSS/,'+')">{{ site.t[page.lang].email }}</a>
+      <a href="{{ '/rss.xml' | prepend: site.baseurl }}">RSS</a>
+    </div>
+  </footer>
+</body>

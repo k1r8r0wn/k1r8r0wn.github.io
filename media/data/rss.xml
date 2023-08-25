@@ -1,0 +1,44 @@
+---
+layout:
+permalink: /rss.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.t['en'].author }}</title>
+    <description>{{ site.t['en'].description }}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ '/rss.xml' | prepend: site.url }}" rel="self" type="application/rss+xml" />
+    {% assign posts=site.posts | where:"lang", "en" %}
+    {% for post in posts %}
+      {% if post.type != 'pages' %}
+        <item>
+          <title>{{ post.title | strip_html }}</title>
+          <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
+          <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+          <link>{{ post.url | prepend: site.url }}</link>
+          <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
+        </item>
+      {% endif %}
+    {% endfor %}
+  </channel>
+  <channel>
+    <title>{{ site.t['ru'].author }}</title>
+    <description>{{ site.t['ru'].description }}</description>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ '/rss.xml' | prepend: site.url }}" rel="self" type="application/rss+xml" />
+    {% assign posts=site.posts | where:"lang", "ru" %}
+    {% for post in posts %}
+      {% if post.type != 'pages' %}
+        <item>
+          <title>{{ post.title | strip_html }}</title>
+          <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
+          <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+          <link>{{ post.url | prepend: site.url }}</link>
+          <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
+        </item>
+      {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

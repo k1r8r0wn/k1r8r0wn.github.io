@@ -1,0 +1,57 @@
+permalink: /:title/
+markdown: redcarpet
+redcarpet:
+  extensions: ['superscript']
+
+baseurl: '' # the sub-path of your site, e.g. /blog
+url: 'https://k1r8r0wn.github.io' # the base hostname & protocol for your site, e.g. http://example.com
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+defaults:
+  -
+    scope:
+      path: ''
+    values:
+      lang: en
+      layout: default
+  -
+    scope:
+      path: _posts/ru
+    values:
+      lang: ru
+nav:
+  en:
+    journal:
+      title: Journal
+      url: /index/
+    about:
+      title: About
+      url: /about/
+  ru:
+    journal:
+      title: Журнал
+      url: /журнал/
+    about:
+      title: Обо мне
+      url: /обо_мне/
+t:
+  en:
+    lang: en
+    author: Kirill B.
+    all_rights_reserved: All rights reserved.
+    description: Personal website of Software Engineer articles about tech and life.
+    min: min.
+    rss: RSS
+    correct_email: When clicked, it will give the correct email address.
+    email: Email
+  ru:
+    lang: ру
+    author: Кирилл Б.
+    all_rights_reserved: Все права защищены.
+    description: Персональный сайт инженера-программиста - статьи о технологиях и жизни.
+    min: мин.
+    correct_email: При клике даст корректный емейл-адрес.
+    email: Почта

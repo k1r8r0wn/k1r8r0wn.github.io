@@ -1,0 +1,29 @@
+---
+layout:
+permalink: /humans.txt
+---
+
+/*
+    humanstxt.org/
+    The humans responsible & technology colophon
+
+    k1r8r0wn.github.io
+*/
+
+// AUTHOR
+
+    Founder & Developer: Kirill B.
+    Github:              https://github.com/k1r8r0wn
+
+// SITE
+
+    Web:                 https://k1r8r0wn.github.io
+    Language:            English, Russian
+
+// TECH
+
+    Markdown, HTML5, XML, Liquid, SVG, CSS3, SASS, Jekyll, Ruby, RSS
+
+// HOSTING
+
+    Proudly hosted by GitHub Pages

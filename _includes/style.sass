@@ -1,0 +1,527 @@
+// Variables
+
+$main: 20
+$line: 30
+$min-width: 300px
+$background-dark: #1d1d1d
+
+// Vertical rhythm
+
+=font($size)
+  font-size: #{$size/$main}em
+  line-height: #{$line/$size}
+
+=padding($size,$top, $bottom, $lateral:0)
+  padding: $top*$line/$size+em $lateral+em $bottom*$line/$size+em
+
+// Main elements
+
+html, body, #wrap
+  height: 100%
+
+*
+  padding: 0
+  margin: 0 auto
+  list-style-type: none
+  font-weight: normal
+  text-align: justify
+  -webkit-text-size-adjust: none
+
+body
+  font: #{$main/16}em / #{$line/$main} Georgia, serif
+  min-width: $min-width
+  > #wrap
+    height: auto
+    min-height: 100%
+  @media screen and (max-width: 400px)
+    font-size: .875em
+  @media (prefers-color-scheme: dark)
+    background: $background-dark
+a
+  color: #777
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+p
+  +padding($main,1,0)
+  @media (prefers-color-scheme: dark)
+    color: #ddd
+
+nav, footer
+  left: 0
+  width: 100%
+
+nav
+  position: fixed
+  top: 0
+  background-color: #191919
+  min-width: $min-width
+
+  ul
+    +padding($main,0,0,1)
+
+  li
+    float: left
+    padding: 0
+
+  a
+    +padding($main,.5,.5,.5)
+    display: block
+    float: left
+    color: #777
+
+  a:hover
+    color: #fff
+
+  .lang, .en:lang(en), .ru:lang(ru)
+    float: right
+    color: #ddd
+
+li
+  @media (prefers-color-scheme: dark)
+    color: #ddd
+
+.logo
+  width: 50px
+  height: 50px
+  @media screen and (max-width: 400px)
+    width: 36px
+    height: 36px
+
+hr
+  +font(24)
+  +padding(24,2,2)
+  border: 0
+  color: #ccc
+
+  &:before
+    content: "❖"
+    white-space: pre
+
+img
+  width: 100%
+
+main
+  +padding($main,0,0,2)
+  padding-bottom: 150px // as footer height
+
+main, nav ul
+  max-width: 50em
+
+footer
+  +font(16)
+  position: relative
+  margin-top: -150px // - height of footer itself
+  height: 150px
+  clear: both
+  color: #ddd
+  background: #fcfcfc
+  min-width: $min-width
+  @media (prefers-color-scheme: dark)
+    background: #191919
+
+  #links
+    text-align: center
+    padding: 3em
+
+    a
+      color: #d0d0d0
+      padding: 0.5em
+
+      &:hover
+        color: #999
+
+h1, h2, hr, .date, nav, footer
+  text-align: center
+
+// Clearfix
+
+.clearfix
+  display: block
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+
+* html .clearfix
+  height: 1%
+
+// Titles
+
+h1
+  +font(26)
+  background: #252525 center
+  background-size: cover
+  color: #fff
+  text-shadow: 0 0 0 #000, 0 0 .3em #000
+  border-top: 2*$line/26+em #191919 solid
+  +padding(26,{% if page.type == "pages" %}2.5,2.5{% else %}2,2{% endif %})
+
+h2
+  +font(25)
+  +padding(25,1,1)
+  margin-top: 2*$line/25+em
+  font-style: italic
+  color: #666
+  background: linear-gradient(#fff 52%, #e8e8e8 52%, #fff 53.5%)
+  text-shadow: -.2em 0 #fff, .2em 0 #fff, -.1em 0 #fff, .1em 0px #fff
+  @media (prefers-color-scheme: dark)
+    background: linear-gradient($background-dark 52%, #424242 52%, $background-dark 53.5%)
+    text-shadow: -.2em 0 $background-dark, .2em 0 $background-dark, -.1em 0 $background-dark, .1em 0px $background-dark
+
+h3
+  +font(21)
+  +padding(21,1,0)
+  color: #888
+
+// Articles list
+
+{% if page.name == "journal" or page.url contains "404" %}
+
+.list
+  +padding(18,1,1)
+  h2
+    color: #ccc
+    +font(20)
+    +padding(20,1,1)
+  a
+    +font(20)
+    display: block
+    max-width: 18em
+
+    div
+      +font(13)
+      margin-left: -3em
+      text-align: right
+      width: 2em
+      position: absolute
+      color: #ddd
+
+// Other pages
+
+{% else %}
+
+.date+p:first-letter
+  float: left
+  margin: 0.13em 0.05em 0 -0.05em
+  font-size: 3.333em
+  line-height: 0.75em
+
+sup
+  font-size: 0.8em
+
+.date
+  +padding($main,3,1)
+  font-style: italic
+  color: #ddd
+
+.reading_time
+  text-align: center
+  font-weight: bold
+
+p+ul li
+  padding-left: 2em
+  &:before
+    content: "– "
+
+{% endif %}
+
+// Code
+
+code
+  font-family: monospace
+  color: #4d4e53
+  line-height: 1
+  font-size: 0.85em
+  overflow: auto
+
+pre
+  border-left: 6px solid #eee
+  +padding($main,.5,.5,.75)
+  font-family: monospace
+  margin: $line/$main+2em -1em
+  overflow-x: auto
+  counter-reset: line
+  @media (prefers-color-scheme: dark)
+    border-left-color: #4d4e53
+
+  code
+    counter-increment: line
+    +font(18)
+    &:before
+      +font(10)
+      display: block
+      float: left
+      clear: both
+      color: #ddd
+      width: 2em
+      font-weight: bold
+      content: counter(line)
+      -webkit-user-select: none
+
+  .lineno
+    color: #4b5363
+
+  .c
+    color: #667689
+    font-style: italic // Comment
+
+  .err
+    color: #a61717
+    //background-color: #e3d2d2 // Error
+
+  .k, .o
+    font-weight: bold // Keyword & Operator
+    color: #abb2bf
+
+  .cm
+    color: #667689
+    font-style: italic // Comment.Multiline
+
+  .cp
+    color: #abb2bf // Comment.Preproc
+
+  .c1
+    color: #667689
+    font-style: italic // Comment.Single
+
+  .cs
+    color: #667689
+    font-weight: bold
+    font-style: italic // Comment.Special
+
+  .gd
+    color: #000
+    background-color: #fdd // Generic.Deleted
+
+    .x
+      color: #000
+      background-color: #faa // Generic.Deleted.Specific
+
+  .ge
+    font-style: italic // Generic.Emph
+
+  .gr
+    color: #a00 // Generic.Error
+
+  .gh
+    color: #999 // Generic.Heading
+
+  .gi
+    color: #000
+    background-color: #dfd // Generic.Inserted
+
+    .x
+      color: #000
+      background-color: #afa // Generic.Inserted.Specific
+
+  .go
+    color: #888 // Generic.Output
+
+  .gp
+    color: #555 // Generic.Prompt
+
+  .gs
+    font-weight: bold // Generic.Strong
+
+  .gu
+    color: #aaa // Generic.Subheading
+
+  .gt
+    color: #a00 // Generic.Traceback
+
+  .kc
+    font-weight: bold // Keyword.Constant
+
+  .kd
+    color: #c678dd // Keyword.Declaration
+
+  .kp
+    font-weight: bold // Keyword.Pseudo
+
+  .kr
+    color: #c678dd // Keyword.Reserved
+
+  .kt
+    color: #458
+    font-weight: bold // Keyword.Type
+
+  .m
+    color: #64b6c3 // Literal.Number
+
+  .p
+    color: #abb2bf
+
+  .s
+    color: #98c379 // Literal.String
+
+  .na
+    color: #d19a66 // Name.Attribute
+
+  .nb
+    color: #d19a66 // Name.Builtin
+
+  .nc
+    color: #cd9a61 // Name.Class
+
+  .no
+    color: #008080 // Name.Constant
+
+  .ni
+    color: #800080 // Name.Entity
+
+  .ne
+    color: #6caff2
+    font-weight: bold // Name.Exception
+
+  .nf
+    color: #6caff2 // Name.Function
+
+  .nn
+    color: #555 // Name.Namespace
+
+  .nt
+    color: #d86c74 // Name.Tag
+
+  .nv
+    color: #008080 // Name.Variable
+
+  .nx
+    color: #d19a66
+
+  .ow
+    font-weight: bold // Operator.Word
+
+  .w
+    color: #bbb // Text.Whitespace
+
+  .mf
+    color: #099 // Literal.Number.Float
+
+  .mh
+    color: #099 // Literal.Number.Hex
+
+  .mi
+    color: #099 // Literal.Number.Integer
+
+  .mo
+    color: #099 // Literal.Number.Oct
+
+  .sb
+    color: #d14 // Literal.String.Backtick
+
+  .sc
+    color: #d14 // Literal.String.Char
+
+  .sd
+    color: #d14 // Literal.String.Doc
+
+  .s2
+    color: #98c379 // Literal.String.Double
+
+  .se
+    color: #d14 // Literal.String.Escape
+
+  .sh
+    color: #d14 // Literal.String.Heredoc
+
+  .si
+    color: #d14 // Literal.String.Interpol
+
+  .sx
+    color: #d14 // Literal.String.Other
+
+  .sr
+    color: #009926 // Literal.String.Regex
+
+  .s1
+    color: #98c379 // Literal.String.Single
+
+  .ss
+    color: #990073 // Literal.String.Symbol
+
+  .bp
+    color: #999 // Name.Builtin.Pseudo
+
+  .vc
+    color: #008080 // Name.Variable.Class
+
+  .vg
+    color: #008080 // Name.Variable.Global
+
+  .vi
+    color: #008080 // Name.Variable.Instance
+
+  .il
+    color: #099 // Literal.Number.Integer.Long
+
+// Marginalias
+
+{% if page.content contains "((" %}
+
+@media screen and (min-width: 1400px)
+  .as:after
+    content: "*"
+    color: #aaa
+  .br
+    display: none
+
+  .mar
+    +font(14)
+    font-style: italic
+    position: absolute
+    left: 70%
+    margin-left: 17em
+    max-width: 16em
+    text-align: left
+    color: #aaa
+
+    &:before
+      content: "* "
+
+    &:after
+      content: "."
+
+    code, a
+      color: #ccc
+      font-style: normal
+
+    a:hover
+      color: #aaa
+
+{% endif %}
+
+//html, body, #wrap
+  height: 100%
+
+//body > #wrap
+//  height: auto
+//  min-height: 100%
+
+//main
+  //padding-bottom: 150px /* отступ должен быть равен высоте футера */
+
+//footer
+//  position: relative
+//  margin-top: -150px /* отрицательное значение высоты футера */
+//  height: 150px
+//  clear: both
+
+//.clearfix:after
+//  content: "."
+//  display: block
+//  height: 0
+//  clear: both
+//  visibility: hidden
+//
+//.clearfix
+//  display: inline-block
+///* Hides from IE-mac \*/
+//* html .clearfix
+//  height: 1%
+//.clearfix
+//  display: block
+///* End hide from IE-mac */
