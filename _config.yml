@@ -6,10 +6,6 @@ redcarpet:
 baseurl: '' # the sub-path of your site, e.g. /blog
 url: 'https://k1r8r0wn.github.io' # the base hostname & protocol for your site, e.g. http://example.com
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
-
 defaults:
   -
     scope:
@@ -26,17 +22,17 @@ nav:
   en:
     journal:
       title: Journal
-      url: /index/
+      url: /index
     about:
       title: About
-      url: /about/
+      url: /about
   ru:
     journal:
       title: Журнал
-      url: /журнал/
+      url: /журнал
     about:
       title: Обо мне
-      url: /обо_мне/
+      url: /обо_мне
 t:
   en:
     lang: en
