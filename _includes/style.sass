@@ -33,7 +33,7 @@ body
   > #wrap
     height: auto
     min-height: 100%
-  @media screen and (max-width: 400px)
+  @media screen and (max-width: 450px)
     font-size: .875em
   @media (prefers-color-scheme: dark)
     background: $background-dark
@@ -83,11 +83,14 @@ li
     color: #ddd
 
 .logo
-  width: 50px
-  height: 50px
-  @media screen and (max-width: 400px)
-    width: 36px
-    height: 36px
+  a
+    padding-bottom: 0
+  img
+    width: 30px
+    height: 30px
+    @media screen and (max-width: 450px)
+      width: 20px
+      height: 20px
 
 hr
   +font(24)
@@ -99,12 +102,11 @@ hr
     content: "❖"
     white-space: pre
 
-img
-  width: 100%
-
 main
   +padding($main,0,0,2)
   padding-bottom: 150px // as footer height
+  @media screen and (max-width: 450px)
+    padding-bottom: 110px // as footer height
 
 main, nav ul
   max-width: 50em
@@ -120,6 +122,9 @@ footer
   min-width: $min-width
   @media (prefers-color-scheme: dark)
     background: #191919
+  @media screen and (max-width: 450px)
+    margin-top: -110px // - height of footer itself
+    height: 110px
 
   #links
     text-align: center
@@ -493,35 +498,3 @@ pre
       color: #aaa
 
 {% endif %}
-
-//html, body, #wrap
-  height: 100%
-
-//body > #wrap
-//  height: auto
-//  min-height: 100%
-
-//main
-  //padding-bottom: 150px /* отступ должен быть равен высоте футера */
-
-//footer
-//  position: relative
-//  margin-top: -150px /* отрицательное значение высоты футера */
-//  height: 150px
-//  clear: both
-
-//.clearfix:after
-//  content: "."
-//  display: block
-//  height: 0
-//  clear: both
-//  visibility: hidden
-//
-//.clearfix
-//  display: inline-block
-///* Hides from IE-mac \*/
-//* html .clearfix
-//  height: 1%
-//.clearfix
-//  display: block
-///* End hide from IE-mac */
