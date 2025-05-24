@@ -1,12 +1,13 @@
 ---
 title: Hello world, <br/> again
 name: hello
+type: post
 lang: en
 date: 2023-08-26
+tags: ruby
 ---
 
 This is my third attempt to start a blog...
-
 
 ```ruby
 class Life

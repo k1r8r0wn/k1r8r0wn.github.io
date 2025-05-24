@@ -92,6 +92,9 @@ li
       width: 20px
       height: 20px
 
+section:nth-child(1)
+  +padding($main,3,1)
+
 hr
   +font(24)
   +padding(24,2,2)
@@ -154,6 +157,11 @@ h1, h2, hr, .date, nav, footer
 * html .clearfix
   height: 1%
 
+// Helper classes
+
+.text-center
+  text-align: center
+
 // Titles
 
 h1
@@ -163,7 +171,7 @@ h1
   color: #fff
   text-shadow: 0 0 0 #000, 0 0 .3em #000
   border-top: 2*$line/26+em #191919 solid
-  +padding(26,{% if page.type == "pages" %}2.5,2.5{% else %}2,2{% endif %})
+  +padding(26,{% if page.type == "page" %}2.5,2.5{% else %}2,2{% endif %})
 
 h2
   +font(25)
@@ -184,7 +192,7 @@ h3
 
 // Articles list
 
-{% if page.name == "journal" or page.url contains "404" %}
+{% if page.name == "journal" or page.name == "tags" or page.url contains "404" %}
 
 .list
   +padding(18,1,1)
@@ -222,6 +230,12 @@ sup
   +padding($main,3,1)
   font-style: italic
   color: #ddd
+
+.tags
+  display: flex
+  width: 12em
+  li
+    padding: 0.3em
 
 .reading_time
   text-align: center

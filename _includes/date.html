@@ -1,5 +1,5 @@
 {% if include.mode != 'month' %}
-  {% assign date = include.date | date: "%-d" %}
+  {% assign date = include.date | date: '%-d' %}
   {% if page.lang == 'ru' %}
     {{ date }}
   {% else %}
@@ -12,8 +12,8 @@
   {% endif %}
 {% endif %}
 
-{% if page.lang == 'ru' and page.type == 'pages' %}
- {% assign m = include.date | date: "%-m" %}
+{% if page.lang == 'ru' and page.type == 'page' %}
+ {% assign m = include.date | date: '%-m' %}
  {% case m %}
     {% when '1' %}Январь
     {% when '2' %}Февраль
@@ -29,7 +29,7 @@
     {% when '12' %}Декабрь
   {% endcase %}
 {% elsif page.lang == 'ru' %}
-  {% assign m = include.date | date: "%-m" %}
+  {% assign m = include.date | date: '%-m' %}
   {% case m %}
     {% when '1' %}января
     {% when '2' %}февраля
@@ -45,6 +45,6 @@
     {% when '12' %}декабря
   {% endcase %}
 {% else %}
-  {{ include.date | date: "%B"}}
+  {{ include.date | date: '%B' }}
 {% endif %}
-{{ include.date | date: "%Y"}}
+{{ include.date | date: '%Y' }}

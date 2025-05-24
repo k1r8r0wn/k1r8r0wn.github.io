@@ -10,17 +10,15 @@ permalink: /rss.xml
     <description>{{ site.t['en'].description }}</description>
     <link>{{ site.url }}</link>
     <atom:link href="{{ '/rss.xml' | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    {% assign posts=site.posts | where:"lang", "en" %}
+    {% assign posts=site.posts | where:"lang", "en" | where: "type", "post" %}
     {% for post in posts %}
-      {% if post.type != 'pages' %}
-        <item>
-          <title>{{ post.title | strip_html }}</title>
-          <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
-          <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-          <link>{{ post.url | prepend: site.url }}</link>
-          <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
-        </item>
-      {% endif %}
+      <item>
+        <title>{{ post.title | strip_html }}</title>
+        <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
+        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <link>{{ post.url | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
+      </item>
     {% endfor %}
   </channel>
   <channel>
@@ -28,17 +26,15 @@ permalink: /rss.xml
     <description>{{ site.t['ru'].description }}</description>
     <link>{{ site.url }}</link>
     <atom:link href="{{ '/rss.xml' | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    {% assign posts=site.posts | where:"lang", "ru" %}
+    {% assign posts=site.posts | where:"lang", "ru" | where: "type", "post" %}
     {% for post in posts %}
-      {% if post.type != 'pages' %}
-        <item>
-          <title>{{ post.title | strip_html }}</title>
-          <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
-          <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-          <link>{{ post.url | prepend: site.url }}</link>
-          <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
-        </item>
-      {% endif %}
+      <item>
+        <title>{{ post.title | strip_html }}</title>
+        <description>{{ post.content | xml_escape | replace: "[[", " (" | replace: "]]", ")"}}</description>
+        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <link>{{ post.url | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.url }}</guid>
+      </item>
     {% endfor %}
   </channel>
 </rss>

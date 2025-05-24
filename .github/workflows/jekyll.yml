@@ -10,6 +10,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
+  pull_requests:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,17 +28,29 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Lint job
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.1' # TODO: Update later to the 3.4+
+          bundler-cache: true
+          cache-version: 0 # Increment this number if you need to re-download cached gems
+      # Add or replace any other lints here
+      - name: Security audit dependencies
+        run: bundle exec bundler-audit --update
+      - name: Security audit application code
+        run: bundle exec brakeman -q -w2 --force
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel
   # Build job
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-          cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3

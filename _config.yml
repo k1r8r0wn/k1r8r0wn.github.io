@@ -26,6 +26,9 @@ nav:
     about:
       title: About
       url: /about
+    tags:
+      title: Tags
+      url: /tags
   ru:
     journal:
       title: Журнал
@@ -33,6 +36,9 @@ nav:
     about:
       title: Обо мне
       url: /обо_мне
+    tags:
+      title: Теги
+      url: /теги
 t:
   en:
     lang: en
@@ -43,6 +49,9 @@ t:
     rss: RSS
     correct_email: When clicked, it will give the correct email address.
     email: Email
+    no_posts: Soon there will be a first post here...
+    no_tags: Soon there will be a first tag here...
+
   ru:
     lang: ру
     author: Кирилл Б.
@@ -51,3 +60,5 @@ t:
     min: мин.
     correct_email: При клике даст корректный емейл-адрес.
     email: Почта
+    no_posts: Скоро здесь появится первый пост...
+    no_tags: Скоро здесь появится первый тег...

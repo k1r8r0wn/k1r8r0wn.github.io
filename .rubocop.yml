@@ -1,0 +1,2 @@
+inherit_gem:
+  rubocop-k1r8r0wn: config/rubocop_ruby_app.yml

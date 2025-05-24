@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    rubocop:
+      run: bundle exec rubocop
+    brakeman:
+      run: brakeman -q --no-pager --force
+pre-push:
+  parallel: true
+  commands:
+    bundler-audit:
+      run: bundler-audit check --update
