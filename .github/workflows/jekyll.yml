@@ -51,6 +51,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.1' # TODO: Update later to the 3.4+
+          bundler-cache: true
+          cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5

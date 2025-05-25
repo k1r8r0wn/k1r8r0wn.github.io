@@ -9,6 +9,7 @@ gem "redcarpet"
 
 group :development do
   gem "base64"
+  gem "brakeman"
   gem "bullet"
   gem "bundler-audit"
   gem "lefthook"
