@@ -28,41 +28,56 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Lint job
-  lint:
+  setup:
     runs-on: ubuntu-latest
+    outputs:
+      ruby-version: ${{ steps.set-ruby.outputs.ruby-version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Install Ruby and gems
+        id: set-ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.1' # TODO: Update later to the 3.4+
           bundler-cache: true
-          cache-version: 0 # Increment this number if you need to re-download cached gems
-      # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bundle exec bundler-audit --update
-      - name: Security audit application code
-        run: bundle exec brakeman -q -w2 --force
-      - name: Lint Ruby files
-        run: bundle exec rubocop --parallel
-  # Build job
+          cache-version: 0
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Restore Ruby cache
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ needs.setup.outputs.ruby-version }}
+          bundler-cache: true
+          cache-version: 0
+      - name: Run linters and audits
+        run: |
+          bundle exec bundler-audit --update
+          bundle exec brakeman -q -w2 --force
+          bundle exec rubocop --parallel
+
   build:
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Restore Ruby cache
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ needs.setup.outputs.ruby-version }}
+          bundler-cache: true
+          cache-version: 0
       - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
         run: bundle exec jekyll build
       - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
