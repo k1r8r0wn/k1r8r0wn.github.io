@@ -40,8 +40,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.1' # TODO: Update later to the 3.4+
-          bundler-cache: true
-          cache-version: 0
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 0 # Increment this number if you need to re-download cached gems
 
   lint:
     runs-on: ubuntu-latest
@@ -52,9 +52,9 @@ jobs:
       - name: Restore Ruby cache
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ needs.setup.outputs.ruby-version }}
+          ruby-version: ${{ steps.setup.outputs.ruby-version }}
           bundler-cache: true
-          cache-version: 0
+          cache-version:  0
       - name: Run linters and audits
         run: |
           bundle exec bundler-audit --update
@@ -74,10 +74,15 @@ jobs:
           ruby-version: ${{ needs.setup.outputs.ruby-version }}
           bundler-cache: true
           cache-version: 0
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
       - name: Clean Jekyll cache
         run: bundle exec jekyll clean
       - name: Build with Jekyll
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
