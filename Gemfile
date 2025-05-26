@@ -7,13 +7,14 @@ ruby ">= 3.2" # TODO: Update later after CI fix
 gem "github-pages"
 gem "redcarpet"
 
+gem "brakeman"
+gem "bundler-audit"
+gem "rubocop-k1r8r0wn", github: "k1r8r0wn/rubocop-k1r8r0wn", require: false
+
 group :development do
   gem "base64"
-  gem "brakeman"
   gem "bullet"
-  gem "bundler-audit"
   gem "lefthook"
   gem "mini_magick"
-  gem "rubocop-k1r8r0wn", github: "k1r8r0wn/rubocop-k1r8r0wn", require: false
   gem "webrick"
 end
