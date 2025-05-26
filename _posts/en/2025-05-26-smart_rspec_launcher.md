@@ -1,14 +1,13 @@
 ---
-title: Умный запускатор RSpec
+title: Smart RSpec launcher
 type: post
 name: smart_rspec_launcher
-lang: ru
-date: 2025-05-27
+lang: en
+date: 2025-05-26
 tags: [rspec]
 ---
 
-Вставьте этот код в **.zshrc** или другой конфиг shell — и получите мощь **bash**-скриптинга:
-
+Add this to your **.zshrc** or other shell configuration file to unleash the superpower of **bash** scripting:
 
 ```bash
 # Running specs
@@ -73,4 +72,4 @@ function ber() {
 }
 ```
 
-За успех! 🥂
+Cheers 🥂!
