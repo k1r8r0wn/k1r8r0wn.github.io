@@ -35,12 +35,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Cache gems
+        uses: actions/cache@v4
+        id: gem-cache
+        with:
+          path: |
+            vendor/bundle
+            ~/.gem
+          key: gems-${{ hashFiles('**/Gemfile.lock') }}-${{ runner.os }}
+          restore-keys: |
+            gems-${{ hashFiles('**/Gemfile.lock') }}-${{ runner.os }}
+
       - name: Install Ruby and gems
         id: set-ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.1' # TODO: Update later to the 3.4+
-          bundler-cache: true
+          bundler-cache: false # Disable embedded caching
           cache-version: 0
 
   lint:
@@ -49,12 +61,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Restore Ruby cache
+
+      - name: Restore gem cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            vendor/bundle
+            ~/.gem
+          key: gems-${{ hashFiles('**/Gemfile.lock') }}-${{ runner.os }}
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ needs.setup.outputs.ruby-version }}
-          bundler-cache: true
-          cache-version: 0
+          bundler-cache: false
+
       - name: Run linters and audits
         run: |
           bundle exec bundler-audit --update
@@ -68,14 +89,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Restore Ruby cache
+
+      - name: Restore gem cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            vendor/bundle
+            ~/.gem
+          key: gems-${{ hashFiles('**/Gemfile.lock') }}-${{ runner.os }}
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ needs.setup.outputs.ruby-version }}
-          bundler-cache: true
-          cache-version: 0
+          bundler-cache: false
+
+      - name: Clean Jekyll cache
+        run: bundle exec jekyll clean
+
       - name: Build with Jekyll
         run: bundle exec jekyll build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
