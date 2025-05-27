@@ -2,5 +2,8 @@
 layout:
 permalink: /robots.txt
 ---
+Sitemap: https://k1rbr0wn.github.io/sitemap.xml
+
 User-agent: *
-Allow: /sitemaps.xml
+Disallow: /404.html
+Disallow: /tags.html
