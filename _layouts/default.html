@@ -22,6 +22,14 @@ layout: typo
       {% capture styles %}{% include style.sass %}{% endcapture %}{{ styles | sassify }}
       h1 { background-image:url('data:image/jpg;base64,{% include headers/{{ page.date | date:'%Y-%m-%d' }} %}');}
   </style>
+  <!-- Google analytics tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RBX8TZQ98M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RBX8TZQ98M');
+  </script>
 </head>
 <body>
   <div id="wrap">
