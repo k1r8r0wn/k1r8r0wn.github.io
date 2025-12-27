@@ -1,14 +1,14 @@
 source "https://rubygems.org"
 
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { "https://github.com/#{it}.git" }
 
-ruby ">= 3.2" # TODO: Update later after CI fix
+ruby ">= 3.4.8"
 
-gem "github-pages"
-gem "redcarpet"
+gem "github-pages", "~> 232" # TODO: Update to ruby 4.0 after new release
 
 gem "brakeman"
 gem "bundler-audit"
+gem "redcarpet"
 gem "rubocop-k1r8r0wn", github: "k1r8r0wn/rubocop-k1r8r0wn", require: false
 
 group :development do

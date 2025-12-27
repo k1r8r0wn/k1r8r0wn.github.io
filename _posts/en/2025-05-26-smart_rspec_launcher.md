@@ -13,22 +13,21 @@ Add this to your **.zshrc** or other shell configuration file to unleash the sup
 # Running specs
 
 # ber
-# ber -c
-# ber spec_name -c
+# ber -cov
+# ber spec_name -cov
 # ber spec_name -of
 # ber spec_name -f FILE
 # ber spec_name -r 2
-# ber spec_name -r 2 -c
+# ber spec_name -r 2 -cov
 function ber() {
     local spec_file='spec'
     local repeats=1
     local flag=''
-    local invalid_flag=false
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-        -c|--coverage)
-            flag='-c'
+        -cov|--coverage)
+            flag='-cov'
             shift
             ;;
         -of|--only-failures)
@@ -56,7 +55,7 @@ function ber() {
         *)
             echo "Error: Incorrect flag '$1'"
             echo "Valid flags are:"
-            echo "  -c, --coverage       Run with coverage"
+            echo "  -cov, --coverage     Run with coverage"
             echo "  -of, --only-failures Run only failed examples"
             echo "  -r, --repeats N      Repeat N times"
             echo "  -f FILE              Use specific spec file"

@@ -34,12 +34,11 @@ jobs:
       ruby-version: ${{ steps.set-ruby.outputs.ruby-version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install Ruby and gems
         id: set-ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2.1' # TODO: Update later to the 3.4+
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
 
@@ -48,7 +47,7 @@ jobs:
     needs: setup
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Restore Ruby cache
         uses: ruby/setup-ruby@v1
         with:
@@ -67,7 +66,7 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Restore Ruby cache
         uses: ruby/setup-ruby@v1
         with:

@@ -1,2 +1,6 @@
 inherit_gem:
   rubocop-k1r8r0wn: config/rubocop_ruby_app.yml
+
+# TODO: Delete later on 4.0 update
+AllCops:
+  TargetRubyVersion: 3.4
